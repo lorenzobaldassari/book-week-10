@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap");
+#app {
+  font-family: "Kanit", sans-serif;
+  background-image: url("https://previews.123rf.com/images/koltukovalek/koltukovalek1907/koltukovalek190700083/127778877-open-book-blue-pattern-magazine-or-library-icons-isolated-on-blue-background-vector-illustration-for.jpg");
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#footer {
+  margin-top: auto;
+}

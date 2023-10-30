@@ -1,0 +1,59 @@
+.imgBox {
+  height: 350px !important;
+}
+
+.cardBox {
+  height: 600px !important;
+  background-color: rgb(225, 225, 225);
+}
+
+.truncate-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.truncate-4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* .cardText {
+  height: 90px;
+}
+
+.cardTitle {
+  height: 90px;
+} */
+
+@media screen and (max-width: 576px) {
+  .imgBox {
+    height: 350px !important;
+  }
+
+  .cardBox {
+    /* height: 650px !important; */
+    background-color: rgb(225, 225, 225);
+    width: 75% !important;
+  }
+  .colXs {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+#bar {
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.redBorder {
+  /* border: 3px solid red; */
+  box-shadow: red 0px 0px 10px 8px;
+}
