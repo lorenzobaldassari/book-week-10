@@ -25,7 +25,9 @@ class SingleBook extends Component{
            else{
             this.setState({
                 selected:false
-            })}}
+            })
+            this.props.setComment("niente")}
+        }
     
             // ser=()=>
             // { this.props.setComment(this.props.id)}
@@ -36,7 +38,7 @@ class SingleBook extends Component{
            
 
         return(
-            <Col  sm={6} md={4} lg={3} xxl={2} className='colXs'>
+            <Col  sm={6} md={4} lg={3} xxl={3} className='colXs'>
                 
             <Card onClick={this.activate}  className={this.state.selected===true ? 'redBorder cardBox' : ' cardBox'}>
                   <div className='imgBox w-100 d-flex justify-content-center align-items-center'>

@@ -47,9 +47,10 @@ class CommentList extends Component{
 
     render(){
        
-        return(
-
-            <ListGroup>
+        return(<>
+                
+            <h2>Recensioni</h2>
+            <ListGroup className="mb-3">
                 {
                     this.state.reservation.map((comment)=>{
                         
@@ -57,6 +58,7 @@ class CommentList extends Component{
                     })
                 }
             </ListGroup>
+                </>
         )
     }
 }

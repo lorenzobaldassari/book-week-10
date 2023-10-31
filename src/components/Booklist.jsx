@@ -86,8 +86,7 @@ class Booklist extends Component{
         return(
             <Container fluid>
                
-                <Row>
-                    <Col className="col-8">
+                <Row className="mb-4">
                     <div className="d-flex justify-content-center">
                    <Form className="d-flex justify-content-center" onSubmit={this.search}>
                       <div className="me-3">
@@ -109,6 +108,7 @@ class Booklist extends Component{
                     <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={this.Scifi}>Scifi</Button>              
                     <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={this.History}>History</Button>                                                  
                </div>
+                    <Col className="col-8">
                          <Row className="g-4">
                             {
                                 this.state.tipo.slice(-4).map((book,i)=>{

@@ -45,10 +45,10 @@ class AddComment extends Component {
       <div className="my-3">
         <Form onSubmit={this.sendComment}>
           <Form.Group className="mb-2">
-            <Form.Label>Recensione</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Inserisci qui il testo"
+          <Form.Label>Recensione</Form.Label>
+        <Form.Control as="textarea" rows={8}
+              type="textArea"
+              className='bb'
               value={this.state.comment.comment}
               onChange={(e) =>
                 this.setState({
