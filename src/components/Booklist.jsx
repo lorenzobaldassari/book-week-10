@@ -1,4 +1,4 @@
-import { Component } from "react";
+import {useState } from "react";
 import  SingleBook from './SingleBook'
 import {Row,Container,Col } from 'react-bootstrap';
 import fantasy from '../books/fantasy.json'
@@ -12,70 +12,49 @@ import CommentAera from "./CommentArea";
 let index=[]
 
 
-class Booklist extends Component{
+const Booklist =()=>{
 
-
-
-    state={
-        tipo:index,
-        original:index,
-        name:''
-      }
+const [tipo,setTipo]= useState(index)
+// eslint-disable-next-line no-unused-vars
+const [original,setOriginal]= useState(index)
+const [name,setName]= useState(``)
+const [singleBookId,setSingleBookId]= useState(``)
     
-       Fantasy = ()=>{
-          this.setState({tipo:fantasy,
-            original:fantasy})
-          console.log(`ok`)
-         }
-          Horror = ()=>{
-          this.setState({tipo:horror,
-        original:horror})
-         }
-          Romance = ()=>{
-          this.setState({tipo:romance,
-            original:romance})
-         }
-          Scifi = ()=>{
-          this.setState({tipo:scifi,
-            original:scifi})
-         }
-          History = ()=>{
-          this.setState({tipo:history,
-            original:history})
-         }
+      const Fantasy = ()=>{
+        setTipo(fantasy)
+       }
+       const Horror = ()=>{
+        setTipo(horror)
+       }
+       const Romance = ()=>{
+        setTipo(romance)
+       }
+       const Scifi = ()=>{
+        setTipo(scifi)
+       }
+       const History = ()=>{
+        setTipo(history)
+       }
     
          
-           search= (e)=>{
+          const  search= (e)=>{
                e.preventDefault()
-              
-               this.setState({
-                   ...this.state,
-                   tipo:this.state.original
-                })
+               setTipo(original)
+                
                
-            const a = this.state.original.filter(a=>{
-                return a.title.toLowerCase().includes( this.state.name.toLowerCase())
+            const a =original.filter(a=>{
+                return a.title.toLowerCase().includes(name.toLowerCase())
             })
-           
-                this.setState({
-                    ...this.state,
-                    tipo:a
-                })
+                setTipo(a)
           }
 
-          handleInputChange=(value)=>{
-              this.setState({                  
-                      ...this.state,
-                      name:value    
-                  })}
-
-
-                  setComment=(val)=>{
-                    this.setState({
-                        singleBookId:val
-                    })
+         const handleInputChange=(value)=>{  
+                      setName(value)
                   }
-    render(){
+
+         const  setComment=(val)=>{
+                    setSingleBookId(val)
+                }
 
 
 
@@ -88,11 +67,11 @@ class Booklist extends Component{
                
                 <Row className="mb-4">
                     <div className="d-flex justify-content-center">
-                   <Form className="d-flex justify-content-center" onSubmit={this.search}>
+                   <Form className="d-flex justify-content-center" onSubmit={search}>
                       <div className="me-3">
                     <Form.Group className="mb-3">
                          
-                        <Form.Control  placeholder="Creca"  onChange={(e)=>this.handleInputChange(e.target.value)} />
+                        <Form.Control  placeholder="Creca"  onChange={(e)=>handleInputChange(e.target.value)} />
                      </Form.Group>
                     </div>
                 <div>
@@ -102,17 +81,19 @@ class Booklist extends Component{
             </Form>
                 </div>           
                  <div className="mb-3 d-flex justify-content-center">
-                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={this.Fantasy}>Fantasy</Button>              
-                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={this.Horror}>Horror</Button>              
-                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={this.Romance}>Romance</Button>              
-                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={this.Scifi}>Scifi</Button>              
-                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={this.History}>History</Button>                                                  
+                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={Fantasy}>Fantasy</Button>              
+                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={Horror}>Horror</Button>              
+                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={Romance}>Romance</Button>              
+                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={Scifi}>Scifi</Button>              
+                    <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={History}>History</Button>                                                  
                </div>
                     <Col className="col-8">
                          <Row className="g-4">
                             {
-                                this.state.tipo.slice(-4).map((book,i)=>{
-                                    return (<SingleBook setComment={this.setComment} key={book.asin} id={parseInt(book.asin)}  img={book.img} title={book.title} price={book.price}
+                                
+                              tipo.slice(-4).map((book,i)=>{
+                                    return (<SingleBook setComment={setComment} key={book.asin}
+                                         id={parseInt(book.asin)}  img={book.img} title={book.title} price={book.price}
                                         />
                                         )
                                         
@@ -124,12 +105,11 @@ class Booklist extends Component{
 
                     </Col>
                     <Col className="col-4">
-                            <CommentAera  id={this.state.singleBookId} />
+                            <CommentAera  id={singleBookId} />
                     </Col>
                 </Row>
             </Container>
         )
     }
-}
 
 export default Booklist

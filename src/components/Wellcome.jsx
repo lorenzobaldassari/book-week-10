@@ -1,12 +1,12 @@
-import { Component } from "react"
 
 
 
-class Wellcome extends Component{
+
+const Wellcome= ()=>{
 
 
 
-render(){
+
     
       
             
@@ -24,7 +24,7 @@ render(){
         </div>
        
 )
-}
+
 }
 
 

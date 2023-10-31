@@ -1,4 +1,4 @@
-import { Component } from "react";
+import {useEffect, useState } from "react";
 import ListGroup from 'react-bootstrap/ListGroup';
 
 
@@ -6,15 +6,20 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
-class CommentList extends Component{
-    state={
-        reservation:[]
-    }
+const CommentList=({array,id})=>{
+ 
+    const [reservation,setReservation]= useState([])
+    const [loading,setLoading]= useState(true)
 
-    getComment=()=>{
-        
-        console.log(this.props.id,`ciaow22`)
-        fetch(`https://striveschool-api.herokuapp.com/api/comments/${this.props.id}`,{headers: {
+    const getComment=()=>{
+        let index
+            if(id!==``)
+            {index=id}
+            else{
+                index=`nessun commento`
+            }
+
+        fetch(`https://striveschool-api.herokuapp.com/api/comments/${index}`,{headers: {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTNhNmNhZWY2ZTNkZDAwMTQ5NWU0NzMiLCJpYXQiOjE2OTgzMjc3MjYsImV4cCI6MTY5OTUzNzMyNn0.tiIIVH3G0CZxJMnN5wdW_wBXmeiHiRSF4i4GjMz16jA"
             }}
        )
@@ -26,34 +31,32 @@ class CommentList extends Component{
             }
         })
         .then((data)=>{
-            console.log(`dati recuperati dddddddddd`, data)
-            this.setState({
-                reservation:data,
-                loading:false
-            })
+            setReservation(data)
+            setLoading(false)
         })
         .catch(error=>{
             console.log(`ERROR`,error)
-            this.setState({
-                loading:false
-            })
+            setLoading(false)
         })}
-        componentDidUpdate(prevProps,prevState){
-            if(prevProps.id !== this.props.id){
-                this.getComment()
-            }
-        }
+        // componentDidUpdate(prevProps,prevState){
+        //     if(prevProps.id !== this.props.id){
+        //         this.getComment()
+        //     }
+        // }
+
+        useEffect(()=>{
+            getComment()
+        },[id])
 
 
-    render(){
+
        
         return(<>
                 
             <h2>Recensioni</h2>
             <ListGroup className="mb-3">
                 {
-                    this.state.reservation.map((comment)=>{
-                        
+                    reservation.map((comment)=>{    
                        return <ListGroup.Item variant="primary" key={comment._id}>{comment.comment}*--*{comment.rate}</ListGroup.Item>         
                     })
                 }
@@ -61,7 +64,7 @@ class CommentList extends Component{
                 </>
         )
     }
-}
+
 
 
 

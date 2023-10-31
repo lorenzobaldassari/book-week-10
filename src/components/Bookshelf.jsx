@@ -7,36 +7,33 @@ import romance from '../books/romance.json'
 import scifi from '../books/scifi.json'
 import {Container,Row, Col} from "react-bootstrap"
 import './bookshelf.css'
-import { Component } from 'react';
+import { useState } from 'react';
 
 
 let index=[]
 
+const Bookshelf=()=>  {
+  const[tipo,setTipo]= useState(index)
 
-class Bookshelf extends Component  {
-  state={
-    tipo:index
-  }
-  
-  render(){
     
     // let index=horror
     
    const Fantasy = ()=>{
-    this.setState({tipo:fantasy})
+    setTipo(fantasy)
    }
    const Horror = ()=>{
-    this.setState({tipo:horror})
+    setTipo(horror)
    }
    const Romance = ()=>{
-    this.setState({tipo:romance})
+    setTipo(romance)
    }
    const Scifi = ()=>{
-    this.setState({tipo:scifi})
+    setTipo(scifi)
    }
    const History = ()=>{
-    this.setState({tipo:history})
+    setTipo(history)
    }
+   
   
   
   return (
@@ -50,7 +47,7 @@ class Bookshelf extends Component  {
             <Button className='mx-2 w-25 fw-semibold' variant="warning" onClick={History}>History</Button>                                                  
         </div>
         <Row className='g-3'>
-          {this.state.tipo.map((book)=>{
+          {tipo.map((book)=>{
           return(
           <Col key={book.asin} sm={6} md={4} lg={3} xxl={2} className='colXs'>
       <Card  className='cardBox'>
@@ -77,7 +74,7 @@ class Bookshelf extends Component  {
         
       
     )
-}}
+}
 
 export default Bookshelf
 
